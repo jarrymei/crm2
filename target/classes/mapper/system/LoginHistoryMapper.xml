@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhidi.system.dao.LoginHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidi.system.entity.LoginHistory" >
+    <id column="LOGINID" property="loginid" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="LOGINTIME" property="logintime" jdbcType="TIMESTAMP" />
+    <result column="LOGINIP" property="loginip" jdbcType="VARCHAR" />
+    <result column="LOGINSTATUS" property="loginstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOGINID, USERID, LOGINTIME, LOGINIP, LOGINSTATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_LOGIN_HISTORY
+    where LOGINID = #{loginid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TB_CRM_LOGIN_HISTORY
+    where LOGINID = #{loginid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhidi.system.entity.LoginHistory" >
+    insert into TB_CRM_LOGIN_HISTORY (LOGINID, USERID, LOGINTIME, 
+      LOGINIP, LOGINSTATUS)
+    values (#{loginid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{logintime,jdbcType=TIMESTAMP}, 
+      #{loginip,jdbcType=VARCHAR}, #{loginstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhidi.system.entity.LoginHistory" >
+    insert into TB_CRM_LOGIN_HISTORY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        LOGINID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="logintime != null" >
+        LOGINTIME,
+      </if>
+      <if test="loginip != null" >
+        LOGINIP,
+      </if>
+      <if test="loginstatus != null" >
+        LOGINSTATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null" >
+        #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginip != null" >
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="loginstatus != null" >
+        #{loginstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidi.system.entity.LoginHistory" >
+    update TB_CRM_LOGIN_HISTORY
+    <set >
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null" >
+        LOGINTIME = #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginip != null" >
+        LOGINIP = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="loginstatus != null" >
+        LOGINSTATUS = #{loginstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOGINID = #{loginid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhidi.system.entity.LoginHistory" >
+    update TB_CRM_LOGIN_HISTORY
+    set USERID = #{userid,jdbcType=VARCHAR},
+      LOGINTIME = #{logintime,jdbcType=TIMESTAMP},
+      LOGINIP = #{loginip,jdbcType=VARCHAR},
+      LOGINSTATUS = #{loginstatus,jdbcType=VARCHAR}
+    where LOGINID = #{loginid,jdbcType=VARCHAR}
+  </update>
+</mapper>

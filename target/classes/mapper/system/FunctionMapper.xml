@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhidi.system.dao.FunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidi.system.entity.Function" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="FUNCCODE" property="funccode" jdbcType="VARCHAR" />
+    <result column="FUNCNAME" property="funcname" jdbcType="VARCHAR" />
+    <result column="FUNCNOTE" property="funcnote" jdbcType="VARCHAR" />
+    <result column="FUNCTYPE" property="functype" jdbcType="DECIMAL" />
+    <result column="FUNCURL" property="funcurl" jdbcType="VARCHAR" />
+    <result column="ICONCLASS" property="iconclass" jdbcType="VARCHAR" />
+    <result column="ICONURL" property="iconurl" jdbcType="VARCHAR" />
+    <result column="SORTNUM" property="sortnum" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATEBY" property="createby" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentid" jdbcType="VARCHAR" />
+    <result column="UPDATEBY" property="updateby" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATETIME, FUNCCODE, FUNCNAME, FUNCNOTE, FUNCTYPE, FUNCURL, ICONCLASS, ICONURL, 
+    SORTNUM, STATUS, UPDATETIME, CREATEBY, PARENTID, UPDATEBY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_SYSTEM_FUNCTION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TB_SYSTEM_FUNCTION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhidi.system.entity.Function" >
+    insert into TB_SYSTEM_FUNCTION (ID, CREATETIME, FUNCCODE, 
+      FUNCNAME, FUNCNOTE, FUNCTYPE, 
+      FUNCURL, ICONCLASS, ICONURL, 
+      SORTNUM, STATUS, UPDATETIME, 
+      CREATEBY, PARENTID, UPDATEBY
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{funccode,jdbcType=VARCHAR}, 
+      #{funcname,jdbcType=VARCHAR}, #{funcnote,jdbcType=VARCHAR}, #{functype,jdbcType=DECIMAL}, 
+      #{funcurl,jdbcType=VARCHAR}, #{iconclass,jdbcType=VARCHAR}, #{iconurl,jdbcType=VARCHAR}, 
+      #{sortnum,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{createby,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, #{updateby,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhidi.system.entity.Function" >
+    insert into TB_SYSTEM_FUNCTION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="funccode != null" >
+        FUNCCODE,
+      </if>
+      <if test="funcname != null" >
+        FUNCNAME,
+      </if>
+      <if test="funcnote != null" >
+        FUNCNOTE,
+      </if>
+      <if test="functype != null" >
+        FUNCTYPE,
+      </if>
+      <if test="funcurl != null" >
+        FUNCURL,
+      </if>
+      <if test="iconclass != null" >
+        ICONCLASS,
+      </if>
+      <if test="iconurl != null" >
+        ICONURL,
+      </if>
+      <if test="sortnum != null" >
+        SORTNUM,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+      <if test="createby != null" >
+        CREATEBY,
+      </if>
+      <if test="parentid != null" >
+        PARENTID,
+      </if>
+      <if test="updateby != null" >
+        UPDATEBY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="funccode != null" >
+        #{funccode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcname != null" >
+        #{funcname,jdbcType=VARCHAR},
+      </if>
+      <if test="funcnote != null" >
+        #{funcnote,jdbcType=VARCHAR},
+      </if>
+      <if test="functype != null" >
+        #{functype,jdbcType=DECIMAL},
+      </if>
+      <if test="funcurl != null" >
+        #{funcurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconclass != null" >
+        #{iconclass,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null" >
+        #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null" >
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateby != null" >
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidi.system.entity.Function" >
+    update TB_SYSTEM_FUNCTION
+    <set >
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="funccode != null" >
+        FUNCCODE = #{funccode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcname != null" >
+        FUNCNAME = #{funcname,jdbcType=VARCHAR},
+      </if>
+      <if test="funcnote != null" >
+        FUNCNOTE = #{funcnote,jdbcType=VARCHAR},
+      </if>
+      <if test="functype != null" >
+        FUNCTYPE = #{functype,jdbcType=DECIMAL},
+      </if>
+      <if test="funcurl != null" >
+        FUNCURL = #{funcurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconclass != null" >
+        ICONCLASS = #{iconclass,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null" >
+        ICONURL = #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        SORTNUM = #{sortnum,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null" >
+        CREATEBY = #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        PARENTID = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateby != null" >
+        UPDATEBY = #{updateby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhidi.system.entity.Function" >
+    update TB_SYSTEM_FUNCTION
+    set CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      FUNCCODE = #{funccode,jdbcType=VARCHAR},
+      FUNCNAME = #{funcname,jdbcType=VARCHAR},
+      FUNCNOTE = #{funcnote,jdbcType=VARCHAR},
+      FUNCTYPE = #{functype,jdbcType=DECIMAL},
+      FUNCURL = #{funcurl,jdbcType=VARCHAR},
+      ICONCLASS = #{iconclass,jdbcType=VARCHAR},
+      ICONURL = #{iconurl,jdbcType=VARCHAR},
+      SORTNUM = #{sortnum,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      CREATEBY = #{createby,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      UPDATEBY = #{updateby,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="queryFuncByRoleIds" resultMap="BaseResultMap">
+  	 select 
+	 distinct tsf.*
+	 from tb_system_function tsf
+	 left join tb_system_role_function tsrf
+	 on tsf.id=tsrf.funcid
+	 where functype=#{funcType} and tsrf.roleid in 
+	 <foreach collection="roleIds" item="id" open="(" close=")" separator=",">
+  	 	#{id}
+  	 </foreach>
+  	 order by sortnum asc
+  </select>
+</mapper>

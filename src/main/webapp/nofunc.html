@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>您没有权限打开此链接，请返回</title>
+  <script type="text/javascript" src="static/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" href="static/css/login.css">
+</head>
+<style type="text/css">
+	body{
+		text-align:center;
+		vertical-align:middle;
+		background:white;
+	}
+	#info{
+		margin-top:100px;
+	}
+	h1{
+		color:red;
+		font-size:50px;
+	}
+	a{
+		color:#00FFFF;
+	}
+	a:hover{
+		color:yellow;
+	}
+</style>
+<body>
+<div id="info">
+  <img src="static/images/nothispage.png"/>
+  <h1>您好像没有权限访问此链接呢，<a href="javascript:void(0)" onclick="return hisback()">请回吧</a></h1>
+  </div>
+  <script type="text/javascript">
+  	function hisback(){
+  		 history.back();
+  	}
+  </script>
+</body>
+</html>

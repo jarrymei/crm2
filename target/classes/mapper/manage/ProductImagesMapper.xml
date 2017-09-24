@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhidi.manage.dao.ProductImagesMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidi.manage.entity.ProductImages" >
+    <id column="IMAGESID" property="imagesid" jdbcType="VARCHAR" />
+    <result column="PRODUCTID" property="productid" jdbcType="VARCHAR" />
+    <result column="ISMAIN" property="ismain" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SAVENAME" property="savename" jdbcType="VARCHAR" />
+    <result column="IMAGESIZE" property="imagesize" jdbcType="VARCHAR" />
+    <result column="PATH" property="path" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="SORTNUM" property="sortnum" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IMAGESID, PRODUCTID, ISMAIN, NAME, SAVENAME, IMAGESIZE, PATH, CREATETIME, SORTNUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_PRODUCT_IMAGES
+    where IMAGESID = #{imagesid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TB_CRM_PRODUCT_IMAGES
+    where IMAGESID = #{imagesid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhidi.manage.entity.ProductImages" >
+    insert into TB_CRM_PRODUCT_IMAGES (IMAGESID, PRODUCTID, ISMAIN, 
+      NAME, SAVENAME, IMAGESIZE, 
+      PATH, CREATETIME, SORTNUM
+      )
+    values (#{imagesid,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{ismain,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{savename,jdbcType=VARCHAR}, #{imagesize,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{sortnum,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhidi.manage.entity.ProductImages" >
+    insert into TB_CRM_PRODUCT_IMAGES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imagesid != null" >
+        IMAGESID,
+      </if>
+      <if test="productid != null" >
+        PRODUCTID,
+      </if>
+      <if test="ismain != null" >
+        ISMAIN,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="savename != null" >
+        SAVENAME,
+      </if>
+      <if test="imagesize != null" >
+        IMAGESIZE,
+      </if>
+      <if test="path != null" >
+        PATH,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="sortnum != null" >
+        SORTNUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imagesid != null" >
+        #{imagesid,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="ismain != null" >
+        #{ismain,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="savename != null" >
+        #{savename,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesize != null" >
+        #{imagesize,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidi.manage.entity.ProductImages" >
+    update TB_CRM_PRODUCT_IMAGES
+    <set >
+      <if test="productid != null" >
+        PRODUCTID = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="ismain != null" >
+        ISMAIN = #{ismain,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="savename != null" >
+        SAVENAME = #{savename,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesize != null" >
+        IMAGESIZE = #{imagesize,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortnum != null" >
+        SORTNUM = #{sortnum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IMAGESID = #{imagesid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhidi.manage.entity.ProductImages" >
+    update TB_CRM_PRODUCT_IMAGES
+    set PRODUCTID = #{productid,jdbcType=VARCHAR},
+      ISMAIN = #{ismain,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      SAVENAME = #{savename,jdbcType=VARCHAR},
+      IMAGESIZE = #{imagesize,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      SORTNUM = #{sortnum,jdbcType=DECIMAL}
+    where IMAGESID = #{imagesid,jdbcType=VARCHAR}
+  </update>
+</mapper>

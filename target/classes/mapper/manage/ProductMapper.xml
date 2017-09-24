@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhidi.manage.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidi.manage.entity.Product" >
+    <id column="PRODUCTID" property="productid" jdbcType="VARCHAR" />
+    <result column="CATEGORYID" property="categoryid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CREATORUSERID" property="creatoruserid" jdbcType="VARCHAR" />
+    <result column="COSTPRICE" property="costprice" jdbcType="DECIMAL" />
+    <result column="SUGGESTEDPRICE" property="suggestedprice" jdbcType="DECIMAL" />
+    <result column="DEVELOPMENTTEAM" property="developmentteam" jdbcType="VARCHAR" />
+    <result column="DEVELOPMENTTIME" property="developmenttime" jdbcType="TIMESTAMP" />
+    <result column="LINK" property="link" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRODUCTID, CATEGORYID, NAME, CREATORUSERID, COSTPRICE, SUGGESTEDPRICE, DEVELOPMENTTEAM, 
+    DEVELOPMENTTIME, LINK, CREATETIME, UPDATETIME, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_PRODUCT
+    where PRODUCTID = #{productid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TB_CRM_PRODUCT
+    where PRODUCTID = #{productid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhidi.manage.entity.Product" >
+    insert into TB_CRM_PRODUCT (PRODUCTID, CATEGORYID, NAME, 
+      CREATORUSERID, COSTPRICE, SUGGESTEDPRICE, 
+      DEVELOPMENTTEAM, DEVELOPMENTTIME, LINK, 
+      CREATETIME, UPDATETIME, DESCRIPTION
+      )
+    values (#{productid,jdbcType=VARCHAR}, #{categoryid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{creatoruserid,jdbcType=VARCHAR}, #{costprice,jdbcType=DECIMAL}, #{suggestedprice,jdbcType=DECIMAL}, 
+      #{developmentteam,jdbcType=VARCHAR}, #{developmenttime,jdbcType=TIMESTAMP}, #{link,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhidi.manage.entity.Product" >
+    insert into TB_CRM_PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        PRODUCTID,
+      </if>
+      <if test="categoryid != null" >
+        CATEGORYID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="creatoruserid != null" >
+        CREATORUSERID,
+      </if>
+      <if test="costprice != null" >
+        COSTPRICE,
+      </if>
+      <if test="suggestedprice != null" >
+        SUGGESTEDPRICE,
+      </if>
+      <if test="developmentteam != null" >
+        DEVELOPMENTTEAM,
+      </if>
+      <if test="developmenttime != null" >
+        DEVELOPMENTTIME,
+      </if>
+      <if test="link != null" >
+        LINK,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creatoruserid != null" >
+        #{creatoruserid,jdbcType=VARCHAR},
+      </if>
+      <if test="costprice != null" >
+        #{costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestedprice != null" >
+        #{suggestedprice,jdbcType=DECIMAL},
+      </if>
+      <if test="developmentteam != null" >
+        #{developmentteam,jdbcType=VARCHAR},
+      </if>
+      <if test="developmenttime != null" >
+        #{developmenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidi.manage.entity.Product" >
+    update TB_CRM_PRODUCT
+    <set >
+      <if test="categoryid != null" >
+        CATEGORYID = #{categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creatoruserid != null" >
+        CREATORUSERID = #{creatoruserid,jdbcType=VARCHAR},
+      </if>
+      <if test="costprice != null" >
+        COSTPRICE = #{costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestedprice != null" >
+        SUGGESTEDPRICE = #{suggestedprice,jdbcType=DECIMAL},
+      </if>
+      <if test="developmentteam != null" >
+        DEVELOPMENTTEAM = #{developmentteam,jdbcType=VARCHAR},
+      </if>
+      <if test="developmenttime != null" >
+        DEVELOPMENTTIME = #{developmenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null" >
+        LINK = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PRODUCTID = #{productid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhidi.manage.entity.Product" >
+    update TB_CRM_PRODUCT
+    set CATEGORYID = #{categoryid,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CREATORUSERID = #{creatoruserid,jdbcType=VARCHAR},
+      COSTPRICE = #{costprice,jdbcType=DECIMAL},
+      SUGGESTEDPRICE = #{suggestedprice,jdbcType=DECIMAL},
+      DEVELOPMENTTEAM = #{developmentteam,jdbcType=VARCHAR},
+      DEVELOPMENTTIME = #{developmenttime,jdbcType=TIMESTAMP},
+      LINK = #{link,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where PRODUCTID = #{productid,jdbcType=VARCHAR}
+  </update>
+</mapper>

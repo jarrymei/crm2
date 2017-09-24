@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhidi.manage.dao.EmailTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidi.manage.entity.EmailTemplate" >
+    <id column="TEMPLATEID" property="templateid" jdbcType="VARCHAR" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="ORDERID" property="orderid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TEMPLATEID, SUBJECT, TITLE, CONTENT, ORDERID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_EMAIL_TEMPLATE
+    where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TB_CRM_EMAIL_TEMPLATE
+    where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhidi.manage.entity.EmailTemplate" >
+    insert into TB_CRM_EMAIL_TEMPLATE (TEMPLATEID, SUBJECT, TITLE, 
+      CONTENT, ORDERID)
+    values (#{templateid,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{orderid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhidi.manage.entity.EmailTemplate" >
+    insert into TB_CRM_EMAIL_TEMPLATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templateid != null" >
+        TEMPLATEID,
+      </if>
+      <if test="subject != null" >
+        SUBJECT,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="orderid != null" >
+        ORDERID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="templateid != null" >
+        #{templateid,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidi.manage.entity.EmailTemplate" >
+    update TB_CRM_EMAIL_TEMPLATE
+    <set >
+      <if test="subject != null" >
+        SUBJECT = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        ORDERID = #{orderid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhidi.manage.entity.EmailTemplate" >
+    update TB_CRM_EMAIL_TEMPLATE
+    set SUBJECT = #{subject,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      ORDERID = #{orderid,jdbcType=DECIMAL}
+    where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  </update>
+</mapper>

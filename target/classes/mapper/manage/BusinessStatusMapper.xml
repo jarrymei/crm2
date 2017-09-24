@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhidi.manage.dao.BusinessStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.zhidi.manage.entity.BusinessStatus" >
+    <id column="STATUSID" property="statusid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ORDERID" property="orderid" jdbcType="DECIMAL" />
+    <result column="ISEND" property="isend" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    STATUSID, NAME, ORDERID, ISEND, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_BUSINESS_STATUS
+    where STATUSID = #{statusid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TB_CRM_BUSINESS_STATUS
+    where STATUSID = #{statusid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhidi.manage.entity.BusinessStatus" >
+    insert into TB_CRM_BUSINESS_STATUS (STATUSID, NAME, ORDERID, 
+      ISEND, DESCRIPTION)
+    values (#{statusid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{orderid,jdbcType=DECIMAL}, 
+      #{isend,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhidi.manage.entity.BusinessStatus" >
+    insert into TB_CRM_BUSINESS_STATUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="statusid != null" >
+        STATUSID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="orderid != null" >
+        ORDERID,
+      </if>
+      <if test="isend != null" >
+        ISEND,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="statusid != null" >
+        #{statusid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhidi.manage.entity.BusinessStatus" >
+    update TB_CRM_BUSINESS_STATUS
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        ORDERID = #{orderid,jdbcType=DECIMAL},
+      </if>
+      <if test="isend != null" >
+        ISEND = #{isend,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where STATUSID = #{statusid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhidi.manage.entity.BusinessStatus" >
+    update TB_CRM_BUSINESS_STATUS
+    set NAME = #{name,jdbcType=VARCHAR},
+      ORDERID = #{orderid,jdbcType=DECIMAL},
+      ISEND = #{isend,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where STATUSID = #{statusid,jdbcType=VARCHAR}
+  </update>
+</mapper>
