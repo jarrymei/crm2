@@ -222,4 +222,18 @@
   	 </foreach>
   	 order by sortnum asc
   </select>
+
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_system_function
+  </select>
+
+  <select id="getFuncByFuncCode" resultMap="BaseResultMap">
+    select tsf.* from tb_system_function tsf
+    left join tb_system_role_function tsrf on tsf.id=tsrf.funcid
+    left join tb_system_role tsr on tsrf.roleid=tsr.id
+    left join tb_system_user_role tsur on tsr.id=tsur.roleid
+    where tsf.functype=0 and tsur.userid=#{userId} and tsf.funccode=#{funcCode}
+  </select>
 </mapper>

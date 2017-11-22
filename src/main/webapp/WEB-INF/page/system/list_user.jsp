@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.mytaglib.com/taglib/func" prefix="func" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -19,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body >
+    <func:func funcCode="user">删除</func:func>
    	<table id="userList" class="easyui-datagrid"></table>
     <div id="toolbar">
     	<a href="javascript:void(0);" onclick="return add('system/user/edit.do')" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新建</a>

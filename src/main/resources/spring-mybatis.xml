@@ -14,6 +14,8 @@
 	
 	<!-- 加载资源文件 -->
 	<context:property-placeholder location="classpath:system.properties"/>
+
+	<bean class="com.zhidi.common.SpringBeanFactoryUtils"/>
 	
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

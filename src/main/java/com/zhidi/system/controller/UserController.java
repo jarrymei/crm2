@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.zhidi.system.entity.vo.MenuVO;
+import com.zhidi.system.service.IMenuService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ import com.zhidi.system.entity.User;
 import com.zhidi.system.service.IRoleService;
 import com.zhidi.system.service.IUserService;
 
+/**
+ * 用户管理
+ */
 @RestController
 @RequestMapping("/system/user")
 public class UserController {
@@ -32,9 +38,11 @@ public class UserController {
 	private IUserService userSerivce;
 	@Autowired
 	private IRoleService roleService;
+	@Autowired
+	private IMenuService menuService;
 	
 	@RequestMapping("/login")
-	public ResultData login(HttpSession session, String username, String password) {
+	public ResultData login(HttpSession session, HttpServletRequest request, String username, String password) {
 		
 		if (StringUtils.isEmpty(username)) {
 			return ResultData.buildFailureResult("请输入用户名");
@@ -51,6 +59,15 @@ public class UserController {
 		}
 		
 		session.setAttribute("user", user);
+
+		//将用户对应权限放入Session中
+		List<MenuVO> menuVos = menuService.queryByUserId(user.getId());
+		List<String> userUrls = new ArrayList<String>();
+		for (MenuVO vo : menuVos) {
+			userUrls.add(request.getContextPath() + "/" +vo.getUrl());
+		}
+		session.setAttribute("userUrls", userUrls);
+
 		return ResultData.buildSuccessResult("登录成功");
 	}
 	

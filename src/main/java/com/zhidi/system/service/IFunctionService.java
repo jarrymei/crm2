@@ -9,4 +9,8 @@ public interface IFunctionService extends IBaseService<Function> {
 	
 	List<Function> queryFuncByRoleIds(String[] roleId);
 
+	List<Function> getAll();
+
+	Boolean authorFunc(String userId, String funcCode);
+
 }

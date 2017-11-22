@@ -12,6 +12,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+	<!--用于加载权限应用程序监听器-->
+	<listener>
+		<listener-class>com.zhidi.listener.MyServlertContextListener</listener-class>
+	</listener>
 	
 	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>
@@ -29,7 +34,8 @@
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	
+
+	<!--字符集过滤器-->
 	<filter>
 		<filter-name>characterEncoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -43,7 +49,8 @@
 		<filter-name>characterEncoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
+	<!--登录权限验证过滤器-->
 	<filter>
 		<filter-name>loginFilter</filter-name>
 		<filter-class>com.zhidi.filter.LoginFilter</filter-class>
@@ -54,6 +61,26 @@
 		<url-pattern>*.do</url-pattern>
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
+
+	<!--针对于直接输入URL访问的过滤器-->
+	<filter>
+		<filter-name>authFunctionFilter</filter-name>
+		<filter-class>com.zhidi.filter.AuthorFunctionFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>authFunctionFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<!--自定义标签配置-->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://www.mytaglib.com/taglib/func</taglib-uri>
+			<taglib-location>/WEB-INF/tag/functag.tld</taglib-location>
+		</taglib>
+
+	</jsp-config>
 
 	<welcome-file-list>
 	    <welcome-file>index.html</welcome-file>

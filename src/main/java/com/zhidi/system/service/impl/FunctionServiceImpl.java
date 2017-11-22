@@ -26,4 +26,14 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function> implements IF
 	public List<Function> queryFuncByRoleIds(String[] roleId) {
 		return functionMapper.queryFuncByRoleIds(roleId, 1L);
 	}
+
+	@Override
+	public List<Function> getAll() {
+		return functionMapper.getAll();
+	}
+
+	@Override
+	public Boolean authorFunc(String userId, String funcCode) {
+		return functionMapper.getFuncByFuncCode(userId, funcCode) != null;
+	}
 }
